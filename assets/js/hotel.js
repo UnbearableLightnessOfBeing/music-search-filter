@@ -37,7 +37,7 @@ class Hotel {
         <div class="extra content">
           <div class="right floated author">
             <img class="ui avatar image" src="assets/img/beach.svg" />
-            Турагентство «Мореход»
+            Турагентство «ILTuristo»
           </div>
         </div>
       </div>`;

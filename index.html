@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ILTuristo - быстрый поиск тура на море</title>
 
     <!-- Fomantic UI 2.9.0 [jsdelivr] | JQuery 3.6.1 -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
@@ -14,19 +14,20 @@
       href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.js"></script>
-    <script src="./assets/hotel.js"></script>
-    <script src="./assets/data.js"></script>
-    <script src="./assets/search-helper.js"></script>
-    <script src="./assets/index.js"></script>
+
+    <!-- Подключение скриптов -->
+    <script src="./assets/js/hotel.js"></script>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/search-helper.js"></script>
+    <script src="./assets/js/index.js"></script>
+
+    <!-- Немного CSS... -->
     <style type="text/css">
       body {
         background-color: #e7e7e7;
       }
       body > .grid {
         height: 75%;
-      }
-      #main-header {
-        /* margin-top: 1%; */
       }
       .column {
         max-width: 800px;
@@ -38,15 +39,50 @@
       <div class="column">
         <h2 class="ui teal icon header" id="main-header">
           <img src="assets/img/beach.svg" class="icon-image" />
-          <div class="content">Турагентство «Мореход»</div>
+          <div class="content">Турагентство «ILTuristo»</div>
           <div class="sub header">Быстрый поиск тура на море</div>
         </h2>
         <form class="ui large form">
-          <div class="ui stacked segment">
+          <div class="ui stacked segment container">
+            <!-- Комбо-бокс города -->
             <div class="field">
               <select id="city-dropdown" class="ui search dropdown"></select>
             </div>
-            <div class="ui fluid large teal submit button">Поиск</div>
+
+            <!-- Комбо-бокс типа комнаты -->
+            <div class="field">
+              <select id="room-dropdown" class="ui selection dropdown"></select>
+            </div>
+
+            <!-- Чекбоксы рейтинга -->
+            <div class="inline fields">
+              <label>Рейтинг гостиницы</label>
+              <div class="two wide field">
+                <div class="ui checkbox" id="rating-3">
+                  <input type="checkbox" checked name="rating-3" />
+                  <label><span class="ui warning text">★★★</span></label>
+                </div>
+              </div>
+              <div class="two wide field">
+                <div class="ui checkbox" id="rating-4">
+                  <input type="checkbox" checked name="rating-4" />
+                  <label><span class="ui warning text">★★★★</span></label>
+                </div>
+              </div>
+              <div class="two wide field">
+                <div class="ui checkbox" id="rating-5">
+                  <input type="checkbox" checked name="rating-5" />
+                  <label><span class="ui warning text">★★★★★</span></label>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="ui fluid large teal submit button"
+              onclick="searchHelper.clear_filters()"
+            >
+              Сброс фильтров
+            </div>
           </div>
 
           <div class="ui error message"></div>
@@ -55,25 +91,8 @@
         <div class="ui message">
           Лучшие туры только у нас! <a href="#">@Ильюшина&nbsp;Д.</a>
         </div>
+
         <div class="hotels"></div>
-        <!-- <div class="ui raised fluid card">
-          <div class="content">
-            <div class="header">Hilton Beach | ★★★★★</div>
-            <div class="meta">
-              <span class="category">Анапа</span>
-            </div>
-            <div class="description left aligned">
-              <p><b>Тип комнаты</b>: Family Room</p>
-              <p><b>Стоимость за сутки</b>: 12500₽</p>
-            </div>
-          </div>
-          <div class="extra content">
-            <div class="right floated author">
-              <img class="ui avatar image" src="assets/img/beach.svg" />
-              Турагентство «Мореход»
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </body>
