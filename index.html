@@ -14,11 +14,66 @@
       href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.js"></script>
+    <script src="./assets/hotel.js"></script>
+    <script src="./assets/data.js"></script>
+    <script src="./assets/search-helper.js"></script>
+    <script src="./assets/index.js"></script>
+    <style type="text/css">
+      body {
+        background-color: #e7e7e7;
+      }
+      body > .grid {
+        height: 75%;
+      }
+      #main-header {
+        /* margin-top: 1%; */
+      }
+      .column {
+        max-width: 800px;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="ui card">
-        <div class="content">ngng</div>
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
+        <h2 class="ui teal icon header" id="main-header">
+          <img src="assets/img/beach.svg" class="icon-image" />
+          <div class="content">Турагентство «Мореход»</div>
+          <div class="sub header">Быстрый поиск тура на море</div>
+        </h2>
+        <form class="ui large form">
+          <div class="ui stacked segment">
+            <div class="field">
+              <select id="city-dropdown" class="ui search dropdown"></select>
+            </div>
+            <div class="ui fluid large teal submit button">Поиск</div>
+          </div>
+
+          <div class="ui error message"></div>
+        </form>
+
+        <div class="ui message">
+          Лучшие туры только у нас! <a href="#">@Ильюшина&nbsp;Д.</a>
+        </div>
+        <div class="hotels"></div>
+        <!-- <div class="ui raised fluid card">
+          <div class="content">
+            <div class="header">Hilton Beach | ★★★★★</div>
+            <div class="meta">
+              <span class="category">Анапа</span>
+            </div>
+            <div class="description left aligned">
+              <p><b>Тип комнаты</b>: Family Room</p>
+              <p><b>Стоимость за сутки</b>: 12500₽</p>
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="right floated author">
+              <img class="ui avatar image" src="assets/img/beach.svg" />
+              Турагентство «Мореход»
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
   </body>
