@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.js"></script>
 
     <!-- Подключение скриптов -->
-    <script src="./assets/js/hotel.js"></script>
+    <script src="./assets/js/song.js"></script>
     <script src="./assets/js/data.js"></script>
     <script src="./assets/js/search-helper.js"></script>
     <script src="./assets/js/index.js"></script>
@@ -24,7 +24,7 @@
     <!-- Немного CSS... -->
     <style type="text/css">
       body {
-        background-color: #e7e7e7;
+        background-color: #60775b;
       }
       body > .grid {
         height: 75%;
@@ -36,63 +36,41 @@
   </head>
   <body>
     <div class="ui middle aligned center aligned grid">
-      <div class="column">
-        <h2 class="ui teal icon header" id="main-header">
-          <img src="assets/img/beach.svg" class="icon-image" />
-          <div class="content">Турагентство «ILTuristo»</div>
-          <div class="sub header">Быстрый поиск тура на море</div>
+      <div class="column" style="width: 45%; min-width: 650px;" >
+        <h2 class="ui violet icon header" style="background: white; margin-top: 1rem; padding: 1rem 2rem; border-radius: 12px;" id="main-header">
+          <div class="content">Музыка</div>
         </h2>
         <form class="ui large form">
-          <div class="ui stacked segment container">
+          <div class="ui stacked segment container" style="border: 4px solid #6435c9; background: rgba(193, 193, 255, 0.8); display: flex; gap: 5px; flex-direction: row; justify-content: center;">
+
             <!-- Комбо-бокс города -->
-            <div class="field">
-              <select id="city-dropdown" class="ui search dropdown"></select>
+            <div class="field" style="width: fit-content;">
+              <input type="text" id="title-input" class="ui search dropdown">
+            </div>
+            <!-- Комбо-бокс города -->
+            <div class="field" style="width: fit-content;">
+              <input type="text" id="author-input" class="ui search dropdown">
             </div>
 
-            <!-- Комбо-бокс типа комнаты -->
-            <div class="field">
-              <select id="room-dropdown" class="ui selection dropdown"></select>
+
+            <!-- Комбо-бокс города -->
+            <div class="field" style="width: fit-content;">
+              <select id="genre-dropdown" class="ui search dropdown"></select>
             </div>
 
-            <!-- Чекбоксы рейтинга -->
-            <div class="inline fields">
-              <label>Рейтинг гостиницы</label>
-              <div class="two wide field">
-                <div class="ui checkbox" id="rating-3">
-                  <input type="checkbox" checked name="rating-3" />
-                  <label><span class="ui warning text">★★★</span></label>
-                </div>
-              </div>
-              <div class="two wide field">
-                <div class="ui checkbox" id="rating-4">
-                  <input type="checkbox" checked name="rating-4" />
-                  <label><span class="ui warning text">★★★★</span></label>
-                </div>
-              </div>
-              <div class="two wide field">
-                <div class="ui checkbox" id="rating-5">
-                  <input type="checkbox" checked name="rating-5" />
-                  <label><span class="ui warning text">★★★★★</span></label>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="ui fluid large teal submit button"
+            <!-- <div
+              class="ui fluid large violet submit button"
               onclick="searchHelper.clear_filters()"
+              style="width: fit-content; height: fit-content;"
             >
-              Сброс фильтров
-            </div>
+              Сбросить
+            </div> -->
           </div>
 
           <div class="ui error message"></div>
         </form>
 
-        <div class="ui message">
-          Лучшие туры только у нас! <a href="#">@Ильюшина&nbsp;Д.</a>
-        </div>
-
-        <div class="hotels"></div>
+        <div class="hotels" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; "></div>
       </div>
     </div>
   </body>

@@ -1,6 +1,6 @@
 /********************************
  *                              *
- *    Smart Filtered Search     *
+ *         Smart Filter         *
  *            BGTU              *
  *            2022              *
  *                              *
@@ -12,9 +12,9 @@ class SearchHelper {
     this.items = all_items;
     this.cards = "";
 
-    this.location = null;
-    this.room = null;
-    this.ratings = null;
+    this.title = '';
+    this.genre = null;
+    this.author = '';
 
     this.rearrange();
   }
@@ -22,31 +22,29 @@ class SearchHelper {
   // Сброс фильтров
   clear_filters() {
     // Откат состояний контролов
-    $("#city-dropdown").dropdown("clear");
-    $("#room-dropdown").dropdown("clear");
-    $("#rating-3").checkbox("check");
-    $("#rating-4").checkbox("check");
-    $("#rating-5").checkbox("check");
+    $("#genre-dropdown").dropdown("clear");
+    $("#title-title").val('');
+    $("#author-title").val('1');
 
     // Откат переменных
     this.items = this.all_items;
-    this.location = null;
-    this.room = null;
-    this.ratings = null;
+    this.title = '';
+    this.genre = null;
+    this.author = '';
 
     // Пересборка карточек
     this.rearrange();
   }
 
-  filter_location() {
+  filter_genre() {
     // Если фильтр не установлен, не будем запускать поиск
-    if (!this.location) return this.all_items;
+    if (!this.genre) return this.all_items;
 
     // Массив, куда поступят отфильтрованные данные
     var items = [];
 
     this.all_items.forEach((item) => {
-      if (item.location === this.location) {
+      if (item.genre === this.genre) {
         // Добавляем в список элементы с нужным городом
         items.push(item);
       }
@@ -55,16 +53,15 @@ class SearchHelper {
     return items;
   }
 
-  filter_rating() {
+  filter_title() {
     // Если фильтр не установлен, не будем запускать поиск
-    if (!this.ratings || this.ratings === [3, 4, 5]) return this.all_items;
+    if (!this.title) return this.all_items;
 
     // Массив, куда поступят отфильтрованные данные
     var items = [];
 
     this.all_items.forEach((item) => {
-      if (this.ratings.includes(item.rating)) {
-        // Добавляем в список элементы с нужным рейтингом
+      if (item.title.toLowerCase().includes(this.title.toLowerCase())) {
         items.push(item);
       }
     });
@@ -72,16 +69,15 @@ class SearchHelper {
     return items;
   }
 
-  filter_room() {
+  filter_author() {
     // Если фильтр не установлен, не будем запускать поиск
-    if (!this.room) return this.all_items;
+    if (!this.author) return this.all_items;
 
     // Массив, куда поступят отфильтрованные данные
     var items = [];
 
     this.all_items.forEach((item) => {
-      if (item.room === this.room) {
-        // Добавляем в список элементы с нужным типом комнат
+      if (item.author.toLowerCase().includes(this.author.toLowerCase())) {
         items.push(item);
       }
     });
@@ -91,22 +87,22 @@ class SearchHelper {
 
   all_filters() {
     // Массивы, куда сгружаются отфильтрованные отели
-    var room_filtered = [];
-    var city_filtered = [];
-    var rating_filtered = [];
+    var genre_filtered = [];
+    var title_filtered = [];
+    var author_filtered = [];
 
     // Два вспомогательных массива
     var arr1 = [];
     var arr2 = [];
 
     // Заполнение отфильтрованными величинами
-    room_filtered = this.filter_room();
-    city_filtered = this.filter_location();
-    rating_filtered = this.filter_rating();
+    genre_filtered = this.filter_genre();
+    author_filtered = this.filter_author();
+    title_filtered = this.filter_title();
 
     // Находим пересечение между тремя массивами
-    arr1 = room_filtered.filter((value) => city_filtered.includes(value));
-    arr2 = arr1.filter((value) => rating_filtered.includes(value));
+    arr1 = genre_filtered.filter((value) => title_filtered.includes(value));
+    arr2 = arr1.filter((value) => author_filtered.includes(value));
 
     // Выводим найденные величины в готовый массив для отображения
     this.items = arr2;
@@ -122,7 +118,7 @@ class SearchHelper {
     // Если не найдены туры, выведем об этом сообщение, иначе – сами туры
     if (this.items.length === 0) {
       this.cards =
-        '<div class="ui error message">По данному запросу туров не найдено.</a></div>';
+        '<div class="ui error message">По данному запросу песен не найдено.</a></div>';
     } else {
       this.items.forEach((hotel) => {
         this.cards += hotel.element();
